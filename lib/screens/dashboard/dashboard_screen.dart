@@ -1,10 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/material.dart';
+
 import 'package:admin_ecommerce_app/screens/dashboard/orders_pie_chart.dart';
 import 'package:admin_ecommerce_app/screens/dashboard/statistic.dart';
 import 'package:admin_ecommerce_app/shared/constants.dart';
-import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+  final void Function(String) onMenuSelected;
+
+  const DashboardScreen(this.onMenuSelected, {super.key});
 
   @override
   State<DashboardScreen> createState() => _DashboardScreenState();
@@ -22,9 +26,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         children: [
           Column(
             children: [
-              Statistic(),
-              const SizedBox(height: defaultPadding),
-              OrdersPieChart(),
+              Statistic(widget.onMenuSelected),
               const SizedBox(height: defaultPadding),
               OrdersPieChart(),
             ],

@@ -19,7 +19,6 @@ class _MainScreenState extends State<MainScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   final screens = <String, Widget>{
-    'DA': const DashboardScreen(),
     'OR': const OrdersScreen(),
     'PR': const ProductScreen(),
   };
@@ -57,6 +56,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
+    screens['DA'] = DashboardScreen(onMenuSelected);
     screens['LI'] = LoginScreen(onUserSignedIn);
     super.initState();
   }
@@ -75,7 +75,10 @@ class _MainScreenState extends State<MainScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    if (currentUser != null) Header(currentUser: currentUser!, openMenuCallback: openMenu),
+                    if (currentUser != null)
+                      Header(
+                          currentUser: currentUser!,
+                          openMenuCallback: openMenu),
                     const SizedBox(height: defaultPadding),
                     currentScreen
                   ],

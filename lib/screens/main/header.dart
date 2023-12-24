@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Header extends StatelessWidget {
-  const Header({required this.currentUser, required this.openMenuCallback, super.key});
+  const Header(
+      {required this.currentUser, required this.openMenuCallback, super.key});
 
   final VoidCallback openMenuCallback;
   final User currentUser;
@@ -12,13 +13,15 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(defaultPadding, defaultPadding, defaultPadding, 0),
+      padding: const EdgeInsets.fromLTRB(
+          defaultPadding, defaultPadding, defaultPadding, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             margin: const EdgeInsets.only(right: defaultPadding),
-            child: IconButton(icon: const Icon(Icons.menu), onPressed: openMenuCallback),
+            child: IconButton(
+                icon: const Icon(Icons.menu), onPressed: openMenuCallback),
           ),
           const Expanded(child: SearchBar()),
           ProfileCard(currentUser),
@@ -35,7 +38,7 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       decoration: InputDecoration(
-        hintText: 'Search',
+        hintText: 'Tìm kiếm',
         fillColor: colorSecondary,
         filled: true,
         border: const OutlineInputBorder(
@@ -68,7 +71,8 @@ class ProfileCard extends StatelessWidget {
       margin: const EdgeInsets.only(left: defaultPadding),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(100),
-        child: Image.asset(currentUser.pic!, height: 48, width: 48, fit: BoxFit.cover),
+        child: Image.asset(currentUser.pic!,
+            height: 48, width: 48, fit: BoxFit.cover),
       ),
     );
   }

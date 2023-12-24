@@ -1,7 +1,12 @@
 class User {
   String? userId, email, password, name, pic;
 
-  User({this.userId, this.email, this.password, this.name, this.pic = 'assets/images/profile.jpg'});
+  User(
+      {this.userId,
+      this.email,
+      this.password,
+      this.name,
+      this.pic = 'assets/images/Superman-icon.png'});
 
   User.fromjson(Map<String, String> jsonMap) {
     userId = jsonMap['userId'];

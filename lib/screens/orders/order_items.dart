@@ -1,49 +1,41 @@
-import 'package:admin_ecommerce_app/models/order.dart';
+import 'package:admin_ecommerce_app/models/order_detail.dart';
 import 'package:admin_ecommerce_app/shared/constants.dart';
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 class OrderItems extends StatelessWidget {
-  const OrderItems(this.order, {super.key});
+  const OrderItems(this.orderDetail, {super.key});
 
-  final Order order;
+  final OrderDetail orderDetail;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(8), color: colorSecondary),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8), color: colorSecondary),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Padding(
             padding: EdgeInsets.all(defaultPadding),
-            child: Text('Order Items', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+            child: Text('Sản phẩm',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           ),
           const Divider(height: 2),
           Padding(
             padding: const EdgeInsets.all(defaultPadding),
             child: Column(
               children: [
-                ...order.orderItems!.mapIndexed(
-                  (index, orderItem) => Column(
-                    children: [
-                      Column(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(defaultPadding),
-                            child: Image.asset(orderItem.image ?? 'assets/images/product_placeholder.jpg'),
-                          ),
-                          const SizedBox(height: 20),
-                          dataRow('Product ID', orderItem.productId.toString()),
-                          dataRow('Name', orderItem.name.toString()),
-                          dataRow('Price', orderItem.price.toString()),
-                          dataRow('Quantity', orderItem.quantity.toString()),
-                        ],
-                      ),
-                      if (index < order.orderItems!.length - 1) const Column(children: [Divider(height: 2), SizedBox(height: 20)])
-                    ],
-                  ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(defaultPadding),
+                  child:
+                      Image.network(orderDetail.listImageProduct[0].pathImage),
                 ),
+                const SizedBox(height: 20),
+                dataRow('Mã sản phẩm', orderDetail.idProduct.toString()),
+                dataRow('Tên sản phẩm', orderDetail.nameProduct.toString()),
+                dataRow('Size', orderDetail.nameSize.toString()),
+                dataRow('Số lượng', orderDetail.quantity.toString()),
+                dataRow('Giá', '${orderDetail.price.toString()} VNĐ'),
               ],
             ),
           ),
@@ -59,7 +51,9 @@ class OrderItems extends StatelessWidget {
         children: [
           SizedBox(
             width: 150,
-            child: Text(cell1, style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
+            child: Text(cell1,
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w600)),
           ),
           Expanded(
             child: Text(
